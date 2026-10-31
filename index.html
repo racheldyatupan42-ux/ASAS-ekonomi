@@ -1,0 +1,1635 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASAS Ekonomi Kelas X - SMA Negeri 46 Maluku Tengah</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Chart.js for Teacher Analytics -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Custom Tailwind Theme Setup -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            800: '#1e293b',
+                            900: '#0f172a',
+                            950: '#020617',
+                        },
+                        gold: {
+                            400: '#fbbf24',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #f1f5f9; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col justify-between">
+
+    <!-- TOP HEADER -->
+    <header class="bg-gradient-to-r from-navy-950 via-navy-900 to-navy-800 text-white border-b-4 border-gold-500 shadow-lg sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="bg-gold-500 text-navy-950 p-2.5 rounded-xl font-bold shadow-md">
+                    <i class="fa-solid font-black text-xl">46</i>
+                </div>
+                <div>
+                    <h1 class="text-lg font-bold tracking-tight text-white leading-tight">SMA NEGERI 46 MALUKU TENGAH</h1>
+                    <p class="text-xs text-gold-400 font-medium">Asesmen Sumatif Akhir Semester (ASAS) • Kurikulum Merdeka</p>
+                </div>
+            </div>
+            
+            <div class="flex items-center space-x-3 mt-2 sm:mt-0">
+                <span class="hidden md:inline-block bg-navy-800/80 text-slate-200 text-xs px-3 py-1.5 rounded-lg border border-slate-700">
+                    <i class="fa-solid fa-chalkboard-user mr-1.5 text-gold-400"></i> Guru: Racheldya N. Tupan, S.Pd.
+                </span>
+                <button onclick="switchTab('admin')" id="navAdminBtn" class="bg-navy-800 hover:bg-gold-500 hover:text-navy-950 text-gold-400 text-xs font-semibold px-3 py-1.5 rounded-lg border border-gold-500/40 transition-all duration-200 flex items-center space-x-1.5">
+                    <i class="fa-solid fa-user-gear"></i>
+                    <span>Portal Guru</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTAINER WITH DYNAMIC VIEWS -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+
+        <!-- VIEW 1: WELCOME & STUDENT REGISTRATION -->
+        <section id="viewWelcome" class="space-y-6">
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                <div class="bg-gradient-to-r from-navy-900 to-navy-800 p-6 sm:p-10 text-white relative">
+                    <div class="max-w-2xl relative z-10">
+                        <span class="inline-block bg-gold-500/20 text-gold-400 border border-gold-500/30 text-xs px-3 py-1 rounded-full font-semibold mb-3">
+                            Mata Pelajaran Ekonomi • Kelas X (Fase E)
+                        </span>
+                        <h2 class="text-2xl sm:text-4xl font-extrabold tracking-tight mb-3">
+                            Asesmen Sumatif Akhir Semester Ganjil
+                        </h2>
+                        <p class="text-slate-300 text-sm sm:text-base leading-relaxed mb-4">
+                            Selamat datang di Sistem Asesmen Digital Ekonomi. Asesmen ini menguji pemahaman literasi dan numerasi Anda pada materi Bab 1 (Pengantar Ilmu Ekonomi) & Bab 2 (Kegiatan Ekonomi).
+                        </p>
+                        <div class="flex flex-wrap gap-4 text-xs sm:text-sm text-slate-300">
+                            <span class="flex items-center"><i class="fa-solid fa-clock text-gold-400 mr-2"></i> Durasi: 90 Menit</span>
+                            <span class="flex items-center"><i class="fa-solid fa-list-check text-gold-400 mr-2"></i> Jumlah Soal: 40 PG</span>
+                            <span class="flex items-center"><i class="fa-solid fa-location-dot text-gold-400 mr-2"></i> Konteks Maluku Tengah</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-6 sm:p-8 grid grid-cols-1 md:grid-cols-12 gap-8">
+                    <!-- Instruction Card -->
+                    <div class="md:col-span-6 space-y-4">
+                        <h3 class="text-lg font-bold text-navy-900 flex items-center">
+                            <i class="fa-solid fa-circle-info text-gold-500 mr-2.5"></i> Petunjuk Pengerjaan
+                        </h3>
+                        <ul class="space-y-2.5 text-xs sm:text-sm text-slate-600">
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-emerald-500 mt-1 mr-2.5 shrink-0"></i>
+                                <span>Isi data identitas diri secara lengkap dan teliti sebelum memulai ujian.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-emerald-500 mt-1 mr-2.5 shrink-0"></i>
+                                <span>Soal terdiri dari pilihan ganda (A, B, C, D, E) dengan stimulus literasi & numerasi.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-emerald-500 mt-1 mr-2.5 shrink-0"></i>
+                                <span>Setiap soal benar bernilai <b>2.5 poin</b> (Total Maksimal = 100).</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-emerald-500 mt-1 mr-2.5 shrink-0"></i>
+                                <span>Waktu berjalan otomatis selama 90 menit dan akan otomatis mengumpulkan saat habis.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-emerald-500 mt-1 mr-2.5 shrink-0"></i>
+                                <span>Pastikan menekan tombol <b>Selesai & Kirim</b> setelah semua jawaban terisi.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Student Registration Form -->
+                    <div class="md:col-span-6 bg-slate-50 p-6 rounded-xl border border-slate-200">
+                        <h3 class="text-lg font-bold text-navy-900 mb-4 flex items-center">
+                            <i class="fa-solid fa-id-card text-navy-800 mr-2.5"></i> Identitas Peserta Ujian
+                        </h3>
+                        <form id="formStudentReg" onsubmit="event.preventDefault(); startExam();" class="space-y-4">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Nama Lengkap Peserta *</label>
+                                <input type="text" id="regName" required placeholder="Contoh: Marcus Pattiasina" class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-navy-900 focus:outline-none text-sm">
+                            </div>
+                            <div class="grid grid-cols-2 gap-3">
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Kelas *</label>
+                                    <select id="regClass" required class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-navy-900 focus:outline-none text-sm bg-white">
+                                        <option value="">-- Pilih --</option>
+                                        <option value="X-1">X-1 (Fase E)</option>
+                                        <option value="X-2">X-2 (Fase E)</option>
+                                        <option value="X-3">X-3 (Fase E)</option>
+                                        <option value="X-4">X-4 (Fase E)</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-700 uppercase mb-1">No. Absen *</label>
+                                    <input type="number" id="regAbsen" required min="1" max="50" placeholder="15" class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-navy-900 focus:outline-none text-sm">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Nomor Peserta ASAS (Opsional)</label>
+                                <input type="text" id="regNoPeserta" placeholder="ASAS-X-46-001" class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-navy-900 focus:outline-none text-sm">
+                            </div>
+                            <button type="submit" class="w-full mt-2 bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-500 text-navy-950 font-bold py-3 px-6 rounded-xl shadow-md transition-all duration-200 flex items-center justify-center space-x-2">
+                                <span>MULAI UJIAN SEKARANG</span>
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- VIEW 2: EXAM PORTAL -->
+        <section id="viewExam" class="hidden space-y-4">
+            <!-- Top Status Bar -->
+            <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 flex flex-wrap justify-between items-center gap-3">
+                <div>
+                    <span class="text-xs text-slate-500 uppercase tracking-wide font-semibold">Peserta Ujian</span>
+                    <h4 id="examStudentInfo" class="text-sm font-bold text-navy-900">Marcus Pattiasina (X-1 / Absen 15)</h4>
+                </div>
+                <!-- Countdown Timer -->
+                <div class="flex items-center space-x-3">
+                    <div id="timerContainer" class="bg-navy-950 text-gold-400 font-mono text-lg font-bold px-4 py-1.5 rounded-lg border border-gold-500/40 shadow-inner flex items-center">
+                        <i class="fa-regular fa-clock mr-2 text-sm text-gold-400"></i>
+                        <span id="timerText">90:00</span>
+                    </div>
+                    <button onclick="confirmSubmitExam()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs px-4 py-2 rounded-lg transition shadow">
+                        <i class="fa-solid fa-paper-plane mr-1.5"></i> Selesai & Kirim
+                    </button>
+                </div>
+            </div>
+
+            <!-- Main Question & Navigation Layout -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                <!-- Question Container (8 Cols) -->
+                <div class="lg:col-span-8 bg-white rounded-xl shadow-sm border border-slate-200 p-5 sm:p-7 flex flex-col justify-between min-h-[500px]">
+                    <div>
+                        <!-- Header Question & Chapter Badge -->
+                        <div class="flex justify-between items-center pb-3 mb-4 border-b border-slate-200">
+                            <span class="bg-navy-900 text-white text-xs font-bold px-3 py-1 rounded-full">
+                                Soal No. <span id="currentQNum">1</span> / 40
+                            </span>
+                            <span id="currentQChapter" class="text-xs font-semibold text-slate-500 bg-slate-100 px-3 py-1 rounded-full">
+                                Bab 1: Pengantar Ilmu Ekonomi
+                            </span>
+                        </div>
+
+                        <!-- Stimulus & Question Text -->
+                        <div id="questionContent" class="space-y-4">
+                            <!-- Injected dynamically -->
+                        </div>
+
+                        <!-- Options List -->
+                        <div id="optionsContainer" class="mt-6 space-y-2.5">
+                            <!-- Injected dynamically -->
+                        </div>
+                    </div>
+
+                    <!-- Bottom Nav Actions -->
+                    <div class="mt-8 pt-4 border-t border-slate-200 flex justify-between items-center">
+                        <button id="btnPrev" onclick="navigateQ(-1)" class="bg-slate-200 hover:bg-slate-300 text-slate-700 font-semibold px-4 py-2 rounded-lg text-sm transition flex items-center">
+                            <i class="fa-solid fa-chevron-left mr-2"></i> Sebelumnya
+                        </button>
+                        
+                        <label class="inline-flex items-center cursor-pointer text-xs font-semibold text-slate-600 bg-slate-100 px-3 py-2 rounded-lg border border-slate-200">
+                            <input type="checkbox" id="chkRagu" onchange="toggleFlagAnswer()" class="form-checkbox text-gold-500 rounded focus:ring-0 mr-2">
+                            <span>Ragu-ragu</span>
+                        </label>
+
+                        <button id="btnNext" onclick="navigateQ(1)" class="bg-navy-900 hover:bg-navy-800 text-white font-semibold px-5 py-2 rounded-lg text-sm transition flex items-center">
+                            <span>Berikutnya</span> <i class="fa-solid fa-chevron-right ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right Grid Navigator (4 Cols) -->
+                <div class="lg:col-span-4 space-y-4">
+                    <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5">
+                        <h4 class="text-sm font-bold text-navy-900 mb-3 flex items-center justify-between">
+                            <span>Navigasi Nomor Soal</span>
+                            <span class="text-xs text-slate-500 font-normal">Klik no untuk lompat</span>
+                        </h4>
+
+                        <!-- Legend -->
+                        <div class="grid grid-cols-3 gap-2 mb-4 text-[11px]">
+                            <div class="flex items-center"><span class="w-3 h-3 bg-emerald-600 rounded-sm mr-1.5"></span> Dijawab</div>
+                            <div class="flex items-center"><span class="w-3 h-3 bg-gold-400 rounded-sm mr-1.5"></span> Ragu-ragu</div>
+                            <div class="flex items-center"><span class="w-3 h-3 bg-slate-200 rounded-sm mr-1.5"></span> Belum</div>
+                        </div>
+
+                        <!-- Grid -->
+                        <div id="qGridNavigator" class="grid grid-cols-5 gap-2 max-h-72 overflow-y-auto custom-scrollbar p-1">
+                            <!-- Injected dynamically -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- VIEW 3: STUDENT RESULT -->
+        <section id="viewResult" class="hidden space-y-6 max-w-3xl mx-auto">
+            <div class="bg-white rounded-2xl shadow-md border border-slate-200 overflow-hidden text-center p-8">
+                <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+                    <i class="fa-solid fa-trophy"></i>
+                </div>
+                <h2 class="text-2xl font-extrabold text-navy-900 mb-1">Asesmen Selesai!</h2>
+                <p class="text-slate-500 text-sm mb-6">Terima kasih telah menyelesaikan Ujian Asesmen Sumatif Akhir Semester Ekonomi.</p>
+
+                <!-- Student Summary Badge -->
+                <div class="bg-slate-50 rounded-xl p-4 mb-6 border border-slate-200 text-left max-w-md mx-auto">
+                    <p class="text-xs text-slate-500 font-semibold uppercase">Identitas Peserta</p>
+                    <h3 id="resStudentName" class="text-lg font-bold text-navy-900">Marcus Pattiasina</h3>
+                    <p id="resStudentClass" class="text-xs text-slate-600">Kelas: X-1 | No. Absen: 15</p>
+                </div>
+
+                <!-- Final Score Display -->
+                <div class="bg-gradient-to-br from-navy-900 to-navy-800 text-white rounded-2xl p-6 mb-6 shadow-inner max-w-md mx-auto">
+                    <span class="text-xs text-gold-400 uppercase font-bold tracking-wider">Nilai Akhir ASAS</span>
+                    <div id="resFinalScore" class="text-5xl font-black text-gold-400 my-2">87.5</div>
+                    <span id="resPredicate" class="inline-block bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-xs px-3 py-1 rounded-full font-semibold">
+                        Predikat: Sangat Baik (A)
+                    </span>
+                </div>
+
+                <!-- Detail Stats Breakdown -->
+                <div class="grid grid-cols-3 gap-3 max-w-md mx-auto mb-6 text-center">
+                    <div class="bg-emerald-50 border border-emerald-200 p-3 rounded-xl">
+                        <span class="text-xs text-emerald-700 font-medium block">Jawaban Benar</span>
+                        <span id="resCorrect" class="text-xl font-bold text-emerald-700">35</span>
+                    </div>
+                    <div class="bg-rose-50 border border-rose-200 p-3 rounded-xl">
+                        <span class="text-xs text-rose-700 font-medium block">Jawaban Salah</span>
+                        <span id="resWrong" class="text-xl font-bold text-rose-700">5</span>
+                    </div>
+                    <div class="bg-slate-100 border border-slate-200 p-3 rounded-xl">
+                        <span class="text-xs text-slate-600 font-medium block">Kosong</span>
+                        <span id="resEmpty" class="text-xl font-bold text-slate-700">0</span>
+                    </div>
+                </div>
+
+                <p id="resMotivation" class="text-xs text-slate-500 italic max-w-md mx-auto mb-6">
+                    "Pertahankan prestasi Anda dan tingkatkan terus kemampuan analisis ekonomi dalam kehidupan sehari-hari!"
+                </p>
+
+                <button onclick="resetAppToHome()" class="bg-navy-900 hover:bg-navy-800 text-white font-bold py-2.5 px-6 rounded-xl text-sm transition">
+                    Kembali ke Halaman Beranda
+                </button>
+            </div>
+        </section>
+
+        <!-- VIEW 4: TEACHER DASHBOARD (ADMIN) -->
+        <section id="viewAdmin" class="hidden space-y-6">
+            <!-- Password Guard Modal Layer if not authenticated -->
+            <div id="adminAuthLock" class="bg-white rounded-2xl p-8 border border-slate-200 shadow-md max-w-md mx-auto text-center space-y-4">
+                <div class="w-14 h-14 bg-gold-100 text-gold-600 rounded-full flex items-center justify-center mx-auto text-xl">
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+                <h3 class="text-xl font-bold text-navy-900">Portal Keamanan Guru</h3>
+                <p class="text-xs text-slate-500">Masukkan Password Guru untuk mengakses rekapitulasi nilai, analisis soal, dan pengolahan bank soal.</p>
+                <div>
+                    <input type="password" id="adminPassInput" placeholder="Password (default: guru46)" class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-navy-900">
+                    <p id="adminPassErr" class="text-xs text-rose-600 mt-1 hidden">Password salah. Gagal masuk!</p>
+                </div>
+                <button onclick="loginAdmin()" class="w-full bg-navy-900 hover:bg-navy-800 text-white font-bold py-2.5 rounded-lg text-sm transition">
+                    Masuk Dashboard Guru
+                </button>
+            </div>
+
+            <!-- Dashboard Content Container (Visible after authentication) -->
+            <div id="adminContent" class="hidden space-y-6">
+                <!-- Header Stats Cards -->
+                <div class="flex flex-wrap justify-between items-center bg-white p-4 rounded-xl border border-slate-200 shadow-sm gap-4">
+                    <div>
+                        <h2 class="text-xl font-extrabold text-navy-900">Dashboard Guru & Analisis Hasil ASAS</h2>
+                        <p class="text-xs text-slate-500">Ekonomi Kelas X Fase E • SMA Negeri 46 Maluku Tengah</p>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <button onclick="exportToCSV()" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-3.5 py-2 rounded-lg transition flex items-center">
+                            <i class="fa-solid fa-file-excel mr-1.5"></i> Unduh Rekap (CSV/Excel)
+                        </button>
+                        <button onclick="logoutAdmin()" class="bg-rose-100 hover:bg-rose-200 text-rose-700 text-xs font-semibold px-3 py-2 rounded-lg transition">
+                            <i class="fa-solid fa-right-from-bracket"></i> Keluar
+                        </button>
+                    </div>
+                </div>
+
+                <!-- KPI Metric Boxes -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+                        <span class="text-xs text-slate-500 font-semibold block">Total Peserta Ujian</span>
+                        <span id="kpiTotalStudents" class="text-2xl font-bold text-navy-900">0</span>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+                        <span class="text-xs text-slate-500 font-semibold block">Rata-Rata Nilai</span>
+                        <span id="kpiAvgScore" class="text-2xl font-bold text-blue-600">0.0</span>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+                        <span class="text-xs text-slate-500 font-semibold block">Nilai Tertinggi / Terendah</span>
+                        <div class="text-xl font-bold text-slate-800">
+                            <span id="kpiMaxScore" class="text-emerald-600">0</span> / <span id="kpiMinScore" class="text-rose-600">0</span>
+                        </div>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+                        <span class="text-xs text-slate-500 font-semibold block">Persentase Ketuntasan</span>
+                        <span id="kpiPassRate" class="text-2xl font-bold text-gold-600">0%</span>
+                    </div>
+                </div>
+
+                <!-- Visual Charts Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+                    <!-- Score Distribution Chart -->
+                    <div class="md:col-span-6 bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+                        <h4 class="text-sm font-bold text-navy-900 mb-3">Distribusinya Nilai Peserta Didik</h4>
+                        <div class="relative h-64">
+                            <canvas id="scoreDistChart"></canvas>
+                        </div>
+                    </div>
+                    <!-- Chapter Mastery Chart -->
+                    <div class="md:col-span-6 bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+                        <h4 class="text-sm font-bold text-navy-900 mb-3">Analisis Capaian Per Bab (Literasi vs Numerasi)</h4>
+                        <div class="relative h-64">
+                            <canvas id="chapterMasteryChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Teacher Tab Navigation (Rekap Nilai / Bank Soal & Pembahasan) -->
+                <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+                    <div class="border-b border-slate-200 flex bg-slate-50 px-4">
+                        <button onclick="switchAdminTab('rekap')" id="tabBtnRekap" class="py-3 px-4 font-bold text-xs text-navy-900 border-b-2 border-navy-900 flex items-center space-x-2">
+                            <i class="fa-solid fa-table-list"></i>
+                            <span>Rekapitulasi Nilai Siswa</span>
+                        </button>
+                        <button onclick="switchAdminTab('banksoal')" id="tabBtnBankSoal" class="py-3 px-4 font-bold text-xs text-slate-500 hover:text-navy-900 flex items-center space-x-2">
+                            <i class="fa-solid fa-book-bookmark"></i>
+                            <span>Kelola Soal & Pembahasan Lengkap</span>
+                        </button>
+                    </div>
+
+                    <!-- TAB 1: REKAPITULASI TABLE -->
+                    <div id="adminTabRekap" class="p-5 space-y-4">
+                        <div class="flex flex-wrap justify-between items-center gap-3">
+                            <div class="flex items-center space-x-2 w-full sm:w-auto">
+                                <input type="text" id="searchStudent" onkeyup="renderAdminTable()" placeholder="Cari nama peserta..." class="px-3 py-1.5 border border-slate-300 rounded-lg text-xs w-full sm:w-48 focus:outline-none">
+                                <select id="filterClass" onchange="renderAdminTable()" class="px-3 py-1.5 border border-slate-300 rounded-lg text-xs bg-white focus:outline-none">
+                                    <option value="ALL">Semua Kelas</option>
+                                    <option value="X-1">X-1</option>
+                                    <option value="X-2">X-2</option>
+                                    <option value="X-3">X-3</option>
+                                    <option value="X-4">X-4</option>
+                                </select>
+                            </div>
+                            <button onclick="clearAllData()" class="text-xs text-rose-600 hover:text-rose-800 font-semibold">
+                                <i class="fa-solid fa-trash-can mr-1"></i> Reset Data Simulasi
+                            </button>
+                        </div>
+
+                        <!-- Data Table -->
+                        <div class="overflow-x-auto border border-slate-200 rounded-lg">
+                            <table class="w-full text-left text-xs text-slate-700">
+                                <thead class="bg-slate-100 uppercase text-slate-600 font-bold border-b border-slate-200">
+                                    <tr>
+                                        <th class="p-3">Waktu WTS</th>
+                                        <th class="p-3">Nama Peserta</th>
+                                        <th class="p-3">Kelas</th>
+                                        <th class="p-3">No. Absen</th>
+                                        <th class="p-3 text-center">Benar</th>
+                                        <th class="p-3 text-center">Salah</th>
+                                        <th class="p-3 text-center">Nilai</th>
+                                        <th class="p-3 text-center">Status</th>
+                                        <th class="p-3 text-center">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="studentTableBody" class="divide-y divide-slate-200">
+                                    <!-- Injected dynamically -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- TAB 2: BANK SOAL & PEMBAHASAN GURU -->
+                    <div id="adminTabBankSoal" class="hidden p-5 space-y-6">
+                        <div class="bg-amber-50 border border-amber-200 p-4 rounded-xl text-amber-900 text-xs flex justify-between items-center">
+                            <div>
+                                <b>Panduan Guru:</b> Seluruh 40 soal telah diselaraskan dengan Capaian Pembelajaran Kurikulum Merdeka Ekonomi Fase E (Literasi & Numerasi lokal Maluku Tengah).
+                            </div>
+                        </div>
+
+                        <div id="questionManagerList" class="space-y-4">
+                            <!-- Injected dynamically -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-navy-950 text-slate-400 border-t border-slate-800 py-4 mt-8">
+        <div class="max-w-7xl mx-auto px-4 text-center text-xs space-y-1">
+            <p>&copy; 2026 SMA Negeri 46 Maluku Tengah. Penyusun: <b>Racheldya Nasmary Tupan, S.Pd.</b></p>
+            <p class="text-slate-500">Asesmen Sumatif Akhir Semester (ASAS) • Kurikulum Merdeka • Ekonomi Fase E</p>
+        </div>
+    </footer>
+
+    <!-- MODAL POPUP FOR DETAILED STUDENT SUBMISSION VIEW -->
+    <div id="modalDetail" class="fixed inset-0 bg-navy-950/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-xl border border-slate-200 max-w-2xl w-full overflow-hidden flex flex-col max-h-[85vh]">
+            <div class="bg-navy-900 text-white px-5 py-4 flex justify-between items-center">
+                <h4 class="font-bold text-sm" id="modalDetailTitle">Detail Lembar Jawaban Siswa</h4>
+                <button onclick="closeModalDetail()" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+            <div id="modalDetailBody" class="p-5 overflow-y-auto space-y-3 custom-scrollbar text-xs">
+                <!-- Content dynamically inserted -->
+            </div>
+            <div class="bg-slate-100 px-5 py-3 border-t border-slate-200 text-right">
+                <button onclick="closeModalDetail()" class="bg-navy-900 text-white text-xs font-bold px-4 py-2 rounded-lg">Tutup</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT APPLICATION LOGIC -->
+    <script>
+        /* -------------------------------------------------------------------------- */
+        /*                          QUESTION BANK (40 ITEMS)                          */
+        /* -------------------------------------------------------------------------- */
+        const initialQuestions = [
+            // BAB 1: PENGANTAR ILMU EKONOMI (1 - 20)
+            {
+                id: 1,
+                chapter: "Bab 1: Pengantar Ilmu Ekonomi",
+                stimulus: "Kata 'ekonomi' berasal dari bahasa Yunani yaitu 'Oikonomia' yang terdiri dari kata 'Oikos' dan 'Nomos'. Dalam konteks tata kelola kehidupan sehari-hari keluarga di Desa Liang, Maluku Tengah, pengaturan sumber daya keluarga menjadi kunci utama kesejahteraan.",
+                question: "Pengertian etimologis yang tepat dari istilah Oikonomia adalah...",
+                options: [
+                    "A. Aturan atau manajemen rumah tangga",
+                    "B. Pengelolaan keuangan negara dan pasar lokal",
+                    "C. Prinsip perdagangan barang dan jasa",
+                    "D. Tata cara berinteraksi sosial di masyarakat",
+                    "E. Hukum kelangkaan barang impor"
+                ],
+                answer: 0,
+                explanation: "Oikonomia berasal dari kata Oikos (rumah tangga) dan Nomos (aturan/hukum), sehingga berarti aturan atau manajemen rumah tangga."
+            },
+            {
+                id: 2,
+                chapter: "Bab 1: Pengantar Ilmu Ekonomi",
+                stimulus: "Sejarah pemikiran ekonomi mencatat perkembangan pesat saat terjadi revolusi industri di Inggris. Tokoh pendiri ekonomi modern menerbitkan buku *The Wealth of Nations* pada tahun 1776.",
+                question: "Siapakah tokoh yang dijuluki sebagai Bapa Ilmu Ekonomi Modern tersebut?",
+                options: [
+                    "A. Karl Marx",
+                    "B. Adam Smith",
+                    "C. John Maynard Keynes",
+                    "D. Alfred Marshall",
+                    "E. David Ricardo"
+                ],
+                answer: 1,
+                explanation: "Adam Smith dikenal sebagai Bapak Ilmu Ekonomi Modern berkat bukunya 'The Wealth of Nations' (1776)."
+            },
+            {
+                id: 3,
+                chapter: "Bab 1: Pengantar Ilmu Ekonomi",
+                stimulus: "Masyarakat di pesisir Teluk Elpaputih menghadapi kenyataan bahwa jumlah ikan hasil tangkapan musim tertentu berkurang akibat perubahan cuaca, sementara kebutuhan konsumsi masyarakat terus meningkat.",
+                question: "Inti masalah ekonomi yang dialami masyarakat tersebut adalah...",
+                options: [
+                    "A. Kelangkaan (scarcity) antara sumber daya terbatas dan kebutuhan tidak terbatas",
+                    "B. Ketidakmampuan pemerintah mengatur harga pasar hasil laut",
+                    "C. Terjadinya inflasi tinggi pada hasil perikanan",
+                    "D. Kurangnya modal sarana tangkap nelayan lokal",
+                    "E. Perubahan pola konsumsi masyarakat modern"
+                ],
+                answer: 0,
+                explanation: "Inti masalah ekonomi adalah kelangkaan (scarcity), yaitu kondisi ketika kebutuhan manusia tidak terbatas sementara alat pemuas kebutuhan terbatas."
+            },
+            {
+                id: 4,
+                chapter: "Bab 1: Pengantar Ilmu Ekonomi",
+                stimulus: "Pak Willem memiliki lahan pertanian di Saparua. Beliau dapat menanami lahannya dengan Cengkih atau Pala. Jika menanam Cengkih, potensi hasilnya Rp 15.000.000 per panen. Jika menanam Pala, potensi hasilnya Rp 18.000.000 per panen. Pak Willem memutuskan menanam Pala.",
+                question: "Berapakah Biaya Peluang (Opportunity Cost) yang dikorbankan Pak Willem?",
+                options: [
+                    "A. Rp 3.000.000",
+                    "B. Rp 15.000.000",
+                    "C. Rp 18.000.000",
+                    "D. Rp 33.000.000",
+                    "E. Rp 0"
+                ],
+                answer: 1,
+                explanation: "Biaya peluang adalah nilai kesempatan terbaik yang dikorbankan/ditinggalkan. Karena menanam Pala dipilih, alternatif terbaik yang dikorbankan adalah Cengkih bernilai Rp 15.000.000."
+            },
+            {
+                id: 5,
+                chapter: "Bab 1: Pengantar Ilmu Ekonomi",
+                stimulus: "Ibu Maryam memiliki modal Rp 500.000 minggu ini. Beliau menyusun urutan kebutuhan berikut:\n1. Membeli beras dan lauk keluarga (Rp 250.000)\n2. Membeli buku pelajaran anak (Rp 150.000)\n3. Membeli pakaian seragam anak (Rp 100.000)\n4. Membeli tas baru dekoratif (Rp 120.000)",
+                question: "Berdasarkan prinsip skala prioritas, tindakan alokasi dana Ibu Maryam yang paling rasional adalah...",
+                options: [
+                    "A. Memenuhi urutan 1, 2, dan 3",
+                    "B. Memenuhi urutan 1, 2, dan 4",
+                    "C. Memenuhi urutan 2, 3, dan 4",
+                    "D. Memenuhi urutan 1 dan 4 saja",
+                    "E. Memenuhi urutan 3 dan 4 saja"
+                ],
+                answer: 0,
+                explanation: "Jumlah modal Rp 500.000 pas untuk urutan 1 (250rb) + urutan 2 (150rb) + urutan 3 (100rb) = Rp 500.000 (Semua merupakan kebutuhan primer dan sekunder mendesak)."
+            },
+            {
+                id: 6,
+                chapter: "Bab 1: Pengantar Ilmu Ekonomi",
+                stimulus: "Kebutuhan manusia dibedakan berdasarkan tingkat intensitasnya yaitu primer, sekunder, dan tersier.",
+                question: "Manakah di bawah ini yang tergolong kebutuhan primer bagi seorang siswa Kelas X SMA Negeri 46 Maluku Tengah?",
+                options: [
+                    "A. Sepeda motor sport untuk jalan-jalan",
+                    "B. Smartphone flagship harga 15 juta",
+                    "C. Makanan bergizi, pakaian seragam, dan tempat tinggal",
+                    "D. Perhiasan emas untuk aksesoris",
+                    "E. Paket liburan ke luar daerah"
+                ],
+                answer: 2,
+                explanation: "Kebutuhan primer adalah kebutuhan pokok yang mutlak harus dipenuhi demi kelangsungan hidup: pangan (makanan), sandang (pakaian), dan papan (tempat tinggal)."
+            },
+            {
+                id: 7,
+                chapter: "Bab 1: Pengantar Ilmu Ekonomi",
+                stimulus: "Masyarakat di wilayah pegunungan memerlukan pakaian tebal, sedangkan masyarakat di kawasan pesisir Banda memerlukan pakaian tipis berbahan katun.",
+                question: "Faktor utama yang memengaruhi perbedaan kebutuhan tersebut adalah...",
+                options: [
+                    "A. Tingkat pendapatan keluarga",
+                    "B. Lingkungan tempat tinggal/geografis",
+                    "C. Kemajuan teknologi informasi",
+                    "D. Status sosial di masyarakat",
+                    "E. Agama dan adat istiadat"
+                ],
+                answer: 1,
+                explanation: "Perbedaan kondisi geografis/lingkungan fisik menyebabkan perbedaan jenis kebutuhan fisik masyarakat."
+            },
+            {
+                id: 8,
+                chapter: "Bab 1: Pengantar Ilmu Ekonomi",
+                stimulus: "Seorang pedagang di Pasar Masohi berusaha membeli stok dagangan langsung dari petani lokal agar mendapat harga murah, lalu menjualnya kembali dengan perhitungan untung yang wajar.",
+                question: "Tindakan pedagang tersebut mencerminkan penerapan...",
+                options: [
+                    "A. Motif sosial kemanusiaan",
+                    "B. Prinsip ekonomi",
+                    "C. Hukum kebiasaan pasar",
+                    "D. Biaya peluang implisit",
+                    "E. Tindakan ekonomi irasional"
+                ],
+                answer: 1,
+                explanation: "Prinsip ekonomi adalah berusaha dengan pengorbanan tertentu untuk memperoleh hasil yang maksimal atau mencapai hasil tertentu dengan pengorbanan sekecil-kecilnya."
+            },
+            {
+                id: 9,
+                chapter: "Bab 1: Pengantar Ilmu Ekonomi",
+                stimulus: "Seorang pengusaha pengolahan minyak kayu putih di Namlea mengalokasikan sebagian keuntungannya untuk membiayai beasiswa anak-anak kurang mampu di sekitarnya.",
+                question: "Motif ekonomi utama yang mendasari tindakan pengusaha tersebut adalah...",
+                options: [
+                    "A. Motif memperoleh kekuasaan ekonomi",
+                    "B. Motif mendapatkan penghargaan",
+                    "C. Motif sosial/kemanusiaan",
+                    "D. Motif memenuhi kebutuhan hidup sendiri",
+                    "E. Motif spekulasi harga"
+                ],
+                answer: 2,
+                explanation: "Motif sosial adalah dorongan bertindak ekonomi untuk membantu atau menolong sesama manusia."
+            },
+            {
+                id: 10,
+                chapter: "Bab 1: Pengantar Ilmu Ekonomi",
+                stimulus: "Benda pemuas kebutuhan dapat dibedakan menjadi barang bebas dan barang ekonomi berdasarkan cara memperolehnya.",
+                question: "Pernyataan yang tepat mengenai contoh barang bebas adalah...",
+                options: [
+                    "A. Udara segar yang dihirup langsung di lereng Gunung Binaiya",
+                    "B. Tabung oksigen medis di RSUD Masohi",
+                    "C. Air minum dalam kemasan botol",
+                    "D. Listrik PLN untuk penerangan rumah",
+                    "E. Beras hasil panen petani lokal"
+                ],
+                answer: 0,
+                explanation: "Barang bebas adalah barang yang dapat diperoleh tanpa pengorbanan biaya/usaha, contohnya udara segar alami dari alam."
+            },
+            {
+                id: 11,
+                chapter: "Bab 1: Pengantar Ilmu Ekonomi",
+                stimulus: "Seseorang membutuhkan Payung khusus saat musim hujan tiba di Maluku Tengah.",
+                question: "Berdasarkan kegunaannya (utility), payung tersebut memiliki kegunaan...",
+                options: [
+                    "A. Element utility (kegunaan dasar)",
+                    "B. Form utility (kegunaan bentuk)",
+                    "C. Time utility (kegunaan waktu)",
+                    "D. Place utility (kegunaan tempat)",
+                    "E. Ownership utility (kegunaan kepemilikan)"
+                ],
+                answer: 2,
+                explanation: "Time utility (kegunaan waktu) terjadi saat suatu barang lebih bermanfaat pada waktu-waktu tertentu (seperti payung saat hujan)."
+            },
+            {
+                id: 12,
+                chapter: "Bab 1: Pengantar Ilmu Ekonomi",
+                stimulus: "Berikut beberapa penyebab keterbatasan sumber daya:\n1) Keterbatasan kemampuan produksi manusia\n2) Bencana alam tanah longsor\n3) Pertumbuhan penduduk cepat\n4) Kemajuan teknologi serba cepat",
+                question: "Faktor penyebab kelangkaan sumber daya ditunjukkan oleh nomor...",
+                options: [
+                    "A. 1), 2), dan 3)",
+                    "B. 1), 2), dan 4)",
+                    "C. 1), 3), dan 4)",
+                    "D. 2), 3), dan 4)",
+                    "E. Semua jawaban benar"
+                ],
+                answer: 0,
+                explanation: "Keterbatasan produksi, bencana alam, dan pertumbuhan penduduk cepat adalah faktor utama penyebab terjadinya kelangkaan."
+            },
+            {
+                id: 13,
+                chapter: "Bab 1: Pengantar Ilmu Ekonomi",
+                stimulus: "Dalam analisis ilmu ekonomi, pembahasan dibagi menjadi Ekonomi Mikro dan Ekonomi Makro.",
+                question: "Contoh kajian yang dibahas secara spesifik dalam Ekonomi Mikro adalah...",
+                options: [
+                    "A. Laju inflasi nasional Indonesia",
+                    "B. Tingkat pengangguran terbuka nasional",
+                    "C. Pembentukan harga keseimbangan ikan cakalang di Pasar Masohi",
+                    "D. Pertumbuhan Ekonomi Provinsi Maluku tahunan",
+                    "E. Kebijakan moneter Bank Indonesia"
+                ],
+                answer: 2,
+                explanation: "Ekonomi Mikro fokus pada perilaku unit-unit ekonomi individual seperti harga barang tertentu di pasar lokal."
+            },
+            {
+                id: 14,
+                chapter: "Bab 1: Pengantar Ilmu Ekonomi",
+                stimulus: "Tabel Pilihan Karier Lulusan SMA:\n- Opsi A: Bekerja di Toko Swalayan (Gaji Rp 2.200.000/bulan)\n- Opsi B: Membuka Usaha Warung Es Kelapa Muda (Potensi Laba Rp 2.800.000/bulan)\n- Opsi C: Menjadi Asisten Budidaya Ikan (Gaji Rp 2.500.000/bulan)",
+                question: "Jika Ahmad memilih membuka Usaha Warung Es Kelapa Muda (Opsi B), berapa biaya peluangnya?",
+                options: [
+                    "A. Rp 2.200.000",
+                    "B. Rp 2.500.000",
+                    "C. Rp 2.800.000",
+                    "D. Rp 4.700.000",
+                    "E. Rp 7.500.000"
+                ],
+                answer: 1,
+                explanation: "Biaya peluang adalah nilai kesempatan terbaik yang ditinggalkan. Dari opsi yang ditinggalkan (A: 2,2 jt dan C: 2,5 jt), yang bernilai tertinggi adalah Opsi C sebesar Rp 2.500.000."
+            },
+            {
+                id: 15,
+                chapter: "Bab 1: Pengantar Ilmu Ekonomi",
+                stimulus: "Pernyataan positif dan normatif dalam ekonomi.\n(1) Pemerintah harus memberikan subsidi pupuk bagi petani pala.\n(2) Kenaikan harga BBM menyebabkan biaya transportasi di Maluku Tengah naik 10%.",
+                question: "Pernyataan di atas secara berturut-turut merupakan contoh dari...",
+                options: [
+                    "A. Ekonomi Normatif dan Ekonomi Positif",
+                    "B. Ekonomi Positif dan Ekonomi Normatif",
+                    "C. Ekonomi Deskriptif dan Terapan",
+                    "D. Ekonomi Teori dan Terapan",
+                    "E. Ekonomi Mikro dan Makro"
+                ],
+                answer: 0,
+                explanation: "Pernyataan (1) mengandung opsi 'seharusnya/harus' (Normatif), sedangkan pernyataan (2) berdasarkan data fakta sebab-akibat nyata (Positif)."
+            },
+            {
+                id: 16,
+                chapter: "Bab 1: Pengantar Ilmu Ekonomi",
+                stimulus: "Siswa kelas X membutuhkan laptop untuk pengerjaan tugas digital. Namun karena dana belum mencukupi, ia membeli buku tulis dan menggunakan komputer perpustakaan sekolah.",
+                question: "Berdasarkan sifatnya, kebutuhan akan laptop bagi siswa dalam kondisi tersebut bernilai...",
+                options: [
+                    "A. Jasmani",
+                    "B. Sekarang",
+                    "C. Yang akan datang (Masa depan)",
+                    "D. Tersier / Sekunder yang ditunda",
+                    "E. Pokok mutlak"
+                ],
+                answer: 3,
+                explanation: "Laptop menjadi kebutuhan sekunder/tersier yang pemenuhannya dapat ditunda saat ada alternatif pemenuh kebutuhan."
+            },
+            {
+                id: 17,
+                chapter: "Bab 1: Pengantar Ilmu Ekonomi",
+                stimulus: "John Maynard Keynes menulis buku *The General Theory of Employment, Interest, and Money* (1936) merespon Depresi Besar.",
+                question: "Keynes dikenal sebagai pelopor lahirnya cabang ilmu...",
+                options: [
+                    "A. Ekonomi Makro Modern",
+                    "B. Ekonomi Pembangunan Klasik",
+                    "C. Akuntansi Perusahaan",
+                    "D. Ekonomi Syariah",
+                    "E. Ekonomi Manajerial"
+                ],
+                answer: 0,
+                explanation: "J.M. Keynes merupakan bapak atau pelopor lahirnya teori Ekonomi Makro Modern."
+            },
+            {
+                id: 18,
+                chapter: "Bab 1: Pengantar Ilmu Ekonomi",
+                stimulus: "Setiap melakukan pilihan ekonomi, manusia dituntut bertindak rasional dengan mempertimbangkan trade-off.",
+                question: "Maksud dari istilah 'Trade-off' dalam pengambilan keputusan ekonomi adalah...",
+                options: [
+                    "A. Situasi di mana seseorang harus mengorbankan satu hal demi mendapatkan hal lain",
+                    "B. Penjualan barang secara barter tanpa mata uang",
+                    "C. Keuntungan berlipat ganda dari usaha perdagangan",
+                    "D. Keadaan tidak adanya persaingan bisnis",
+                    "E. Kesepakatan pinjaman modal usaha"
+                ],
+                answer: 0,
+                explanation: "Trade-off adalah situasi kompromi di mana seseorang mengorbankan sebagian kualitas/hal untuk memperoleh aspek lain."
+            },
+            {
+                id: 19,
+                chapter: "Bab 1: Pengantar Ilmu Ekonomi",
+                stimulus: "Berikut barang-barang pemuas kebutuhan:\n1) Kompor dan Gas LPG\n2) Mobil dan Bensin\n3) Kopi dan Teh\n4) Nasi dan Sagu",
+                question: "Pasangan barang yang bersifat Komplementer (saling melengkapi) adalah...",
+                options: [
+                    "A. 1) dan 2)",
+                    "B. 1) dan 3)",
+                    "C. 2) dan 4)",
+                    "D. 3) dan 4)",
+                    "E. 2) dan 3)"
+                ],
+                answer: 0,
+                explanation: "Barang komplementer adalah barang yang kegunaannya saling melengkapi (Kompor-Gas, Mobil-Bensin)."
+            },
+            {
+                id: 20,
+                chapter: "Bab 1: Pengantar Ilmu Ekonomi",
+                stimulus: "Tujuan utama seseorang mempelajari ilmu ekonomi dalam kehidupan sehari-hari adalah...",
+                question: "Manakah pernyataan yang paling rasional?",
+                options: [
+                    "A. Agar dapat menguasai seluruh aset produksi pasar",
+                    "B. Agar mampu membuat keputusan alokasi sumber daya yang terbatas secara bijak dan optimal",
+                    "C. Menghindari pemenuhan kebutuhan sekunder",
+                    "D. Menghilangkan sama sekali risiko kerugian dalam hidup",
+                    "E. Menjadi kaya secara instan tanpa bekerja"
+                ],
+                answer: 1,
+                explanation: "Tujuan praktis mempelajari ilmu ekonomi adalah membantu individu membuat keputusan pengalokasian sumber daya yang terbatas secara efisien dan bijak."
+            },
+
+            // BAB 2: KEGIATAN EKONOMI (21 - 40)
+            {
+                id: 21,
+                chapter: "Bab 2: Kegiatan Ekonomi",
+                stimulus: "Kegiatan ekonomi secara umum dikelompokkan menjadi tiga kegiatan utama yang saling berkaitan erat dalam memenuhi kebutuhan hidup masyarakat.",
+                question: "Tiga kegiatan ekonomi utama tersebut adalah...",
+                options: [
+                    "A. Produksi, Distribusi, dan Konsumsi",
+                    "B. Pembelian, Penjualan, dan Simpanan",
+                    "C. Pertanian, Perikanan, dan Perdagangan",
+                    "D. Investasi, Tabungan, dan Asuransi",
+                    "E. Ekspor, Impor, dan Transito"
+                ],
+                answer: 0,
+                explanation: "Kegiatan ekonomi terdiri dari Produksi (menghasilkan), Distribusi (menyalurkan), dan Konsumsi (menggunakan/menghabiskan)."
+            },
+            {
+                id: 22,
+                chapter: "Bab 2: Kegiatan Ekonomi",
+                stimulus: "Sebuah UMKM di Masohi mengolah buah pala segar menjadi manisan pala dan sirup pala berdaya jual tinggi.",
+                question: "Kegiatan mengubah bentuk bahan mentah menjadi barang jadi tersebut menciptakan kegunaan...",
+                options: [
+                    "A. Place utility (kegunaan tempat)",
+                    "B. Form utility (kegunaan bentuk)",
+                    "C. Time utility (kegunaan waktu)",
+                    "D. Ownership utility (kegunaan kepemilikan)",
+                    "E. Service utility (kegunaan pelayanan)"
+                ],
+                answer: 1,
+                explanation: "Form utility terjadi ketika suatu benda ditingkatkan nilai gunanya dengan cara mengubah bentuk fisik dasarnya."
+            },
+            {
+                id: 23,
+                chapter: "Bab 2: Kegiatan Ekonomi",
+                stimulus: "Faktor-faktor produksi terdiri dari faktor produksi asli dan faktor produksi turunan.",
+                question: "Manakah yang termasuk ke dalam kelompok Faktor Produksi Asli?",
+                options: [
+                    "A. Modal dan Kewirausahaan (Entrepreneurship)",
+                    "B. Sumber Daya Alam (SDA) dan Tenaga Kerja (SDM)",
+                    "C. Mesin pabrik dan Uang tunai",
+                    "D. Skill manajemen dan Teknologi",
+                    "E. Gedung dan Lahan usaha"
+                ],
+                answer: 1,
+                explanation: "Faktor produksi asli meliputi Sumber Daya Alam (Alam) dan Tenaga Kerja (Manusia)."
+            },
+            {
+                id: 24,
+                chapter: "Bab 2: Kegiatan Ekonomi",
+                stimulus: "Petani cengkih memerlukan modal berupa sarana pengeringan modern dan mesin perontok untuk meningkatkan efisiensi panen.",
+                question: "Mesin dan alat produksi tersebut dikategorikan sebagai faktor produksi...",
+                options: [
+                    "A. Alam",
+                    "B. Tenaga kerja terdidik",
+                    "C. Modal (Capital)",
+                    "D. Kewirausahaan",
+                    "E. Informasi"
+                ],
+                answer: 2,
+                explanation: "Faktor produksi modal adalah segalanya (alat, mesin, gedung, uang) yang digunakan untuk menunjang proses produksi barang/jasa."
+            },
+            {
+                id: 25,
+                chapter: "Bab 2: Kegiatan Ekonomi",
+                stimulus: "Ibu Nur menyalurkan hasil ikan asin krupuk dari nelayan di Tehoru langsung kepada konsumen akhir tanpa melalui perantara grosir besar.",
+                question: "Saluran distribusi yang diterapkan oleh Ibu Nur adalah...",
+                options: [
+                    "A. Saluran distribusi tidak langsung",
+                    "B. Saluran distribusi langsung",
+                    "C. Saluran distribusi panjang",
+                    "D. Saluran distribusi semi-intensif",
+                    "E. Saluran keagenan resmi"
+                ],
+                answer: 1,
+                explanation: "Distribusi langsung adalah penyaluran barang hasil produksi tanpa melalui perantara, langsung dari produsen ke konsumen."
+            },
+            {
+                id: 26,
+                chapter: "Bab 2: Kegiatan Ekonomi",
+                stimulus: "Data Biaya Produksi Pembuatan Sirup Pala (Per 100 Botol):\n- Sewa tempat & mesin: Rp 500.000 (Biaya Tetap / FC)\n- Bahan buah pala & gula: Rp 800.000 (Biaya Variabel / VC)",
+                question: "Berapakah Biaya Total (Total Cost - TC) untuk memproduksi 100 botol sirup pala tersebut?",
+                options: [
+                    "A. Rp 300.000",
+                    "B. Rp 800.000",
+                    "C. Rp 1.300.000",
+                    "D. Rp 1.800.000",
+                    "E. Rp 400.000"
+                ],
+                answer: 2,
+                explanation: "Rumus TC = FC + VC. TC = Rp 500.000 + Rp 800.000 = Rp 1.300.000."
+            },
+            {
+                id: 27,
+                chapter: "Bab 2: Kegiatan Ekonomi",
+                stimulus: "Berdasarkan soal No 26 di atas, berapa Biaya Rata-Rata (Average Cost - AC) per botol sirup pala?",
+                question: "Pilihlah hasil perhitungan yang benar:",
+                options: [
+                    "A. Rp 8.000 / botol",
+                    "B. Rp 13.000 / botol",
+                    "C. Rp 15.000 / botol",
+                    "D. Rp 5.000 / botol",
+                    "E. Rp 130.000 / botol"
+                ],
+                answer: 1,
+                explanation: "Rumus AC = TC / Q. AC = Rp 1.300.000 / 100 botol = Rp 13.000 per botol."
+            },
+            {
+                id: 28,
+                chapter: "Bab 2: Kegiatan Ekonomi",
+                stimulus: "Kegiatan mengonsumsi makanan gizi seimbang oleh peserta didik sebelum berangkat ke SMA Negeri 46 Maluku Tengah bertujuan untuk...",
+                question: "Tujuan utama kegiatan konsumsi tersebut adalah...",
+                options: [
+                    "A. Mengurangi nilai guna barang secara bertahap demi memuaskan kebutuhan fisik",
+                    "B. Menghasilkan barang baru yang bernilai jual",
+                    "C. Membantu produsen menghabiskan stok produk",
+                    "D. Meningkatkan status sosial di antara teman sekelas",
+                    "E. Memperoleh pinjaman modal dari lembaga keuangan"
+                ],
+                answer: 0,
+                explanation: "Tujuan konsumsi adalah memenuhi kebutuhan hidup langsung dengan cara mengurangi atau menghabiskan nilai guna barang/jasa."
+            },
+            {
+                id: 29,
+                chapter: "Bab 2: Kegiatan Ekonomi",
+                stimulus: "Empat Pelaku Ekonomi Utama dalam perekonomian terbuka terdiri dari RTK, RTP, RTG (Pemerintah), dan RTLN (Masyarakat Luar Negeri).",
+                question: "Peran utama Rumah Tangga Konsumen (RTK) dalam pasar faktor produksi adalah...",
+                options: [
+                    "A. Menyediakan faktor produksi (tanah, tenaga kerja, modal)",
+                    "B. Memproduksi barang dan jasa public",
+                    "C. Membayar pajak penghasilan perusahaan",
+                    "D. Mengatur tarif ekspor impor",
+                    "E. Menyediakan fasilitas infrastruktur umum"
+                ],
+                answer: 0,
+                explanation: "Dalam pasar faktor produksi, RTK berperan sebagai pemilik dan penyedia faktor produksi (tanah, tenaga kerja, modal, keahlian)."
+            },
+            {
+                id: 30,
+                chapter: "Bab 2: Kegiatan Ekonomi",
+                stimulus: "Rumah Tangga Produsen (RTP) membayar balas jasa atas pemakaian faktor produksi dari RTK.",
+                question: "Balas jasa yang diterima RTK karena menyewakan Lahan atau Tanah kepada RTP dinamakan...",
+                options: [
+                    "A. Upah / Gaji (Wage)",
+                    "B. Bunga modal (Interest)",
+                    "C. Sewa (Rent)",
+                    "D. Laba usaha (Profit)",
+                    "E. Dividen"
+                ],
+                answer: 2,
+                explanation: "Balas jasa atas faktor produksi tanah adalah Sewa (Rent)."
+            },
+            {
+                id: 31,
+                chapter: "Bab 2: Kegiatan Ekonomi",
+                stimulus: "Pemerintah (RTG) memungut pajak dari RTK dan RTP, kemudian menyalurkannya kembali dalam bentuk fasilitas publik seperti jalan raya dan jembatan.",
+                question: "Fungsi pemerintah tersebut dinamakan...",
+                options: [
+                    "A. Fungsi Alokasi dan Distribusi",
+                    "B. Fungsi Moneter mutlak",
+                    "C. Fungsi Pengawasan pasar bebas",
+                    "D. Fungsi Ekspor komoditas",
+                    "E. Fungsi Pembiayaan swasta"
+                ],
+                answer: 0,
+                explanation: "Pemerintah menjalankan fungsi alokasi (menyediakan barang publik) dan distribusi (pajak & subsidi)."
+            },
+            {
+                id: 32,
+                chapter: "Bab 2: Kegiatan Ekonomi",
+                stimulus: "Masyarakat Luar Negeri (RTLN) melakukan pembelian minyak kayu putih khas Maluku dari pengusaha lokal.",
+                question: "Kegiatan penyaluran barang dari dalam negeri ke luar negeri tersebut dinamakan...",
+                options: [
+                    "A. Impor",
+                    "B. Ekspor",
+                    "C. Barter",
+                    "D. Re-ekspor",
+                    "E. Dumping"
+                ],
+                answer: 1,
+                explanation: "Ekspor adalah kegiatan menjual barang/jasa dari dalam negeri ke luar negeri."
+            },
+            {
+                id: 33,
+                chapter: "Bab 2: Kegiatan Ekonomi",
+                stimulus: "Berdasarkan Circular Flow Diagram 2 Sektor (Sederhana), arus uang dari Rumah Tangga Produsen (RTP) ke Rumah Tangga Konsumen (RTK) terjadi karena...",
+                question: "Pernyataan yang tepat adalah...",
+                options: [
+                    "A. Pembayaran atas pembelian barang dan jasa konsumsi",
+                    "B. Pembayaran balas jasa faktor produksi (sewa, upah, bunga, laba)",
+                    "C. Pembayaran pajak bangunan",
+                    "D. Pembelian barang impor",
+                    "E. Pemberian subsidi pemerintah"
+                ],
+                answer: 1,
+                explanation: "Dalam pasar input, RTP menyerahkan uang sebagai balas jasa faktor produksi kepada RTK."
+            },
+            {
+                id: 34,
+                chapter: "Bab 2: Kegiatan Ekonomi",
+                stimulus: "Hukum Hasil yang Semakin Menurun (*The Law of Diminishing Returns*) dikemukakan oleh David Ricardo.",
+                question: "Hukum ini menyatakan bahwa jika penambahan satu faktor produksi variabel (misal tenaga kerja) dilakukan terus-menerus pada faktor tetap, maka...",
+                options: [
+                    "A. Tambahan hasil produksi (Marginal Product) awal meningkat, namun lama-kelamaan akan menurun",
+                    "B. Total produksi langsung menjadi nol",
+                    "C. Biaya produksi akan menjadi konstan selamanya",
+                    "D. Kualitas barang otomatis meningkat 100%",
+                    "E. Tidak ada pengaruh pada hasil panen"
+                ],
+                answer: 0,
+                explanation: "The Law of Diminishing Returns menjelaskan bahwa penambahan input variabel terus-menerus pada input tetap awalnya menambah hasil, tetapi sampai titik tertentu tambahan hasilnya (MP) akan semakin berkurang."
+            },
+            {
+                id: 35,
+                chapter: "Bab 2: Kegiatan Ekonomi",
+                stimulus: "Tabel Hasil Tambahan Produksi Nelayan Tangkap:\n- 1 Nelayan: 50 kg\n- 2 Nelayan: 110 kg (MP = 60 kg)\n- 3 Nelayan: 150 kg (MP = 40 kg)\n- 4 Nelayan: 175 kg (MP = 25 kg)",
+                question: "Fase berlakunya *The Law of Diminishing Returns* mulai terjadi pada penambahan nelayan ke-...",
+                options: [
+                    "A. Ke-1",
+                    "B. Ke-2",
+                    "C. Ke-3",
+                    "D. Ke-4",
+                    "E. Belum terjadi"
+                ],
+                answer: 2,
+                explanation: "Marginal Product (MP) tertinggi pada nelayan ke-2 (60 kg). Saat penambahan nelayan ke-3, MP turun dari 60 kg menjadi 40 kg (mulai terjadi penurunan tambahan hasil)."
+            },
+            {
+                id: 36,
+                chapter: "Bab 2: Kegiatan Ekonomi",
+                stimulus: "Perhatikan faktor-faktor yang memengaruhi konsumsi berikut:\n1) Besarnya pendapatan bersih keluarga\n2) Tingkat harga barang & jasa\n3) Adat istiadat dan tradisi lokal\n4) Kemajuan modal pabrik",
+                question: "Faktor intern dan ekstern yang memengaruhi tingkat konsumsi rumah tangga ditunjukkan nomor...",
+                options: [
+                    "A. 1), 2), dan 3)",
+                    "B. 1), 2), dan 4)",
+                    "C. 2), 3), dan 4)",
+                    "D. 1) dan 4) saja",
+                    "E. Semua benar"
+                ],
+                answer: 0,
+                explanation: "Pendapatan, harga barang, dan adat istiadat adalah faktor-faktor penentu besarnya konsumsi."
+            },
+            {
+                id: 37,
+                chapter: "Bab 2: Kegiatan Ekonomi",
+                stimulus: "Pengolahan ikan tuna segar menjadi tuna kaleng di Banda Maluku menambah manfaat fisik produk.",
+                question: "Faktor produksi yang paling berperan memberikan nilai tambah teknologi pengolahan tersebut adalah...",
+                options: [
+                    "A. Faktor produksi modal dan kewirausahaan/keterampilan",
+                    "B. Faktor produksi alam mentah saja",
+                    "C. Tanah tempat menjemur",
+                    "D. Subsidi luar negeri",
+                    "E. Kebijakan kuota impor"
+                ],
+                answer: 0,
+                explanation: "Teknologi pengolahan tinggi didorong oleh gabungan modal mesin dan keahlian/kewirausahaan (skill)."
+            },
+            {
+                id: 38,
+                chapter: "Bab 2: Kegiatan Ekonomi",
+                stimulus: "Suatu usaha kerajinan kerang di Amahai memiliki FC = Rp 2.000.000. Biaya Variabel per unit (VC/unit) = Rp 15.000. Kerajinan dijual dengan harga Rp 35.000 per unit.",
+                question: "Berapa unit kerajinan kerang yang harus dijual agar mencapai Titik Impas (Break Even Point - BEP Unit)?",
+                options: [
+                    "A. 50 unit",
+                    "B. 100 unit",
+                    "C. 150 unit",
+                    "D. 200 unit",
+                    "E. 250 unit"
+                ],
+                answer: 1,
+                explanation: "Rumus BEP Unit = FC / (Harga - VC per unit) = 2.000.000 / (35.000 - 15.000) = 2.000.000 / 20.000 = 100 unit."
+            },
+            {
+                id: 39,
+                chapter: "Bab 2: Kegiatan Ekonomi",
+                stimulus: "Penyaluran minyak tanah oleh PT Pertamina ke agen, lalu ke pangkalan desa, hingga sampai ke tangan ibu rumah tangga merupakan rantai distribusi...",
+                question: "Saluran distribusi tersebut tergolong...",
+                options: [
+                    "A. Distribusi langsung",
+                    "B. Distribusi tidak langsung",
+                    "C. Distribusi eksklusif tunggal",
+                    "D. Konsumsi sepihak",
+                    "E. Produksi tertutup"
+                ],
+                answer: 1,
+                explanation: "Distribusi tidak langsung melibatkan lembaga-lembaga perantara (agen, pangkalan, pengecer) sebelum sampai ke konsumen akhir."
+            },
+            {
+                id: 40,
+                chapter: "Bab 2: Kegiatan Ekonomi",
+                stimulus: "Prinsip utama yang harus dipegang oleh seorang Produsen yang bertanggung jawab secara etis di Maluku Tengah adalah...",
+                question: "Pernyataan tindakan produsen etis yang benar adalah...",
+                options: [
+                    "A. Menggunakan bahan berbahaya demi menekan biaya produksi serendah mungkin",
+                    "B. Menghasilkan barang berkualitas, ramah lingkungan, serta memberikan harga wajar bagi konsumen",
+                    "C. Mengeksploitasi hasil laut tanpa memikirkan kelestarian terumbu karang",
+                    "D. Monopoli bahan pangan pokok agar harga ditentukan sepihak",
+                    "E. Mengurangi timbangan barang secara sengaja"
+                ],
+                answer: 1,
+                explanation: "Produsen etis berorientasi pada mutu produk, kelestarian lingkungan, keselamatan konsumen, serta persaingan yang sehat."
+            }
+        ];
+
+        /* -------------------------------------------------------------------------- */
+        /*                               GLOBAL STATE                                 */
+        /* -------------------------------------------------------------------------- */
+        let questions = JSON.parse(localStorage.getItem('asas_questions')) || initialQuestions;
+        let studentAnswers = {}; // { qId: optionIndex }
+        let studentFlags = {};   // { qId: boolean }
+        let currentQIndex = 0;
+        let timerInterval = null;
+        let timeLeft = 90 * 60; // 90 minutes in seconds
+        let currentStudent = null;
+        let isAdminLoggedIn = false;
+        let scoreChartInstance = null;
+        let chapterChartInstance = null;
+
+        // Sample Data for Teacher Portal (if empty)
+        let studentResults = JSON.parse(localStorage.getItem('asas_results')) || [
+            { timestamp: "2026-10-28 08:30", name: "Marcus Pattiasina", class: "X-1", absen: "15", correct: 35, wrong: 5, score: 87.5, status: "Tuntas" },
+            { timestamp: "2026-10-28 08:35", name: "Wilhelmina Tuasikal", class: "X-1", absen: "28", correct: 38, wrong: 2, score: 95.0, status: "Tuntas" },
+            { timestamp: "2026-10-28 08:40", name: "Johanis Leimena", class: "X-2", absen: "08", correct: 26, wrong: 14, score: 65.0, status: "Belum Tuntas" },
+            { timestamp: "2026-10-28 08:42", name: "Siti Rahma Pelu", class: "X-3", absen: "22", correct: 32, wrong: 8, score: 80.0, status: "Tuntas" }
+        ];
+
+        /* -------------------------------------------------------------------------- */
+        /*                           NAVIGATION & VIEWS                               */
+        /* -------------------------------------------------------------------------- */
+        function switchTab(viewName) {
+            document.getElementById('viewWelcome').classList.add('hidden');
+            document.getElementById('viewExam').classList.add('hidden');
+            document.getElementById('viewResult').classList.add('hidden');
+            document.getElementById('viewAdmin').classList.add('hidden');
+
+            if (viewName === 'welcome') document.getElementById('viewWelcome').classList.remove('hidden');
+            if (viewName === 'exam') document.getElementById('viewExam').classList.remove('hidden');
+            if (viewName === 'result') document.getElementById('viewResult').classList.remove('hidden');
+            if (viewName === 'admin') {
+                document.getElementById('viewAdmin').classList.remove('hidden');
+                if (isAdminLoggedIn) {
+                    document.getElementById('adminAuthLock').classList.add('hidden');
+                    document.getElementById('adminContent').classList.remove('hidden');
+                    initTeacherDashboard();
+                } else {
+                    document.getElementById('adminAuthLock').classList.remove('hidden');
+                    document.getElementById('adminContent').classList.add('hidden');
+                }
+            }
+        }
+
+        /* -------------------------------------------------------------------------- */
+        /*                            EXAM FLOW LOGIC                                 */
+        /* -------------------------------------------------------------------------- */
+        function startExam() {
+            const name = document.getElementById('regName').value.trim();
+            const cls = document.getElementById('regClass').value;
+            const absen = document.getElementById('regAbsen').value;
+            const nopes = document.getElementById('regNoPeserta').value;
+
+            if (!name || !cls || !absen) {
+                alert("Harap isi semua kolom identitas diri!");
+                return;
+            }
+
+            currentStudent = { name, class: cls, absen, nopes };
+            studentAnswers = {};
+            studentFlags = {};
+            currentQIndex = 0;
+            timeLeft = 90 * 60;
+
+            document.getElementById('examStudentInfo').innerText = `${name} (${cls} / Absen ${absen})`;
+
+            renderQuestion();
+            renderNavigatorGrid();
+            startTimer();
+
+            switchTab('exam');
+        }
+
+        function startTimer() {
+            clearInterval(timerInterval);
+            updateTimerDisplay();
+
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                updateTimerDisplay();
+
+                if (timeLeft === 10 * 60) {
+                    showTimerToast("Peringatan: Waktu sisa 10 menit lagi!");
+                } else if (timeLeft === 5 * 60) {
+                    showTimerToast("Peringatan Darurat: Waktu sisa 5 menit lagi!");
+                }
+
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    alert("Waktu ujian telah habis! Sistem akan mengumpulkan jawaban Anda secara otomatis.");
+                    submitExam();
+                }
+            }, 1000);
+        }
+
+        function updateTimerDisplay() {
+            const m = Math.floor(timeLeft / 60);
+            const s = timeLeft % 60;
+            document.getElementById('timerText').innerText = 
+                `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+        }
+
+        function showTimerToast(msg) {
+            const box = document.getElementById('timerContainer');
+            box.classList.add('animate-bounce', 'border-rose-500', 'text-rose-400');
+            setTimeout(() => {
+                box.classList.remove('animate-bounce');
+            }, 4000);
+        }
+
+        function renderQuestion() {
+            const q = questions[currentQIndex];
+            document.getElementById('currentQNum').innerText = currentQIndex + 1;
+            document.getElementById('currentQChapter').innerText = q.chapter;
+
+            // Render Content & Stimulus
+            document.getElementById('questionContent').innerHTML = `
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 text-xs sm:text-sm text-slate-700 leading-relaxed italic">
+                    <i class="fa-solid fa-quote-left text-navy-800 opacity-40 mr-1"></i> ${q.stimulus}
+                </div>
+                <p class="text-sm sm:text-base font-bold text-navy-950 mt-3 leading-snug">
+                    ${q.question}
+                </p>
+            `;
+
+            // Render Options
+            const optContainer = document.getElementById('optionsContainer');
+            optContainer.innerHTML = '';
+
+            q.options.forEach((opt, idx) => {
+                const isSelected = studentAnswers[q.id] === idx;
+                const btn = document.createElement('button');
+                btn.className = `w-full text-left p-3.5 sm:p-4 rounded-xl border transition-all duration-150 flex items-start space-x-3 text-xs sm:text-sm ${
+                    isSelected 
+                        ? 'bg-navy-900 text-white border-navy-900 shadow-md font-semibold' 
+                        : 'bg-white hover:bg-slate-100 text-slate-800 border-slate-200'
+                }`;
+                btn.onclick = () => selectOption(q.id, idx);
+                btn.innerHTML = `
+                    <span class="w-6 h-6 rounded-full flex items-center justify-center shrink-0 text-xs font-bold ${
+                        isSelected ? 'bg-gold-500 text-navy-950' : 'bg-slate-100 text-slate-600 border border-slate-300'
+                    }">${String.fromCharCode(65 + idx)}</span>
+                    <span class="mt-0.5">${opt.substring(3)}</span>
+                `;
+                optContainer.appendChild(btn);
+            });
+
+            // Update Flag Checkbox
+            document.getElementById('chkRagu').checked = !!studentFlags[q.id];
+
+            // Nav Buttons Disabled State
+            document.getElementById('btnPrev').disabled = currentQIndex === 0;
+            document.getElementById('btnPrev').style.opacity = currentQIndex === 0 ? '0.5' : '1';
+
+            if (currentQIndex === questions.length - 1) {
+                document.getElementById('btnNext').innerText = "Selesai";
+            } else {
+                document.getElementById('btnNext').innerHTML = `Berikutnya <i class="fa-solid fa-chevron-right ml-2"></i>`;
+            }
+        }
+
+        function selectOption(qId, optIdx) {
+            studentAnswers[qId] = optIdx;
+            renderQuestion();
+            renderNavigatorGrid();
+        }
+
+        function toggleFlagAnswer() {
+            const qId = questions[currentQIndex].id;
+            studentFlags[qId] = document.getElementById('chkRagu').checked;
+            renderNavigatorGrid();
+        }
+
+        function navigateQ(dir) {
+            const newIdx = currentQIndex + dir;
+            if (newIdx >= 0 && newIdx < questions.length) {
+                currentQIndex = newIdx;
+                renderQuestion();
+                renderNavigatorGrid();
+            }
+        }
+
+        function jumpToQuestion(idx) {
+            currentQIndex = idx;
+            renderQuestion();
+            renderNavigatorGrid();
+        }
+
+        function renderNavigatorGrid() {
+            const grid = document.getElementById('qGridNavigator');
+            grid.innerHTML = '';
+
+            questions.forEach((q, idx) => {
+                const isAnswered = studentAnswers[q.id] !== undefined;
+                const isFlagged = !!studentFlags[q.id];
+                const isCurrent = idx === currentQIndex;
+
+                let stateClass = "bg-slate-100 text-slate-700 border-slate-300";
+                if (isAnswered) stateClass = "bg-emerald-600 text-white border-emerald-600";
+                if (isFlagged) stateClass = "bg-gold-400 text-navy-950 border-gold-500 font-bold";
+                if (isCurrent) stateClass += " ring-2 ring-navy-950 ring-offset-2";
+
+                const btn = document.createElement('button');
+                btn.className = `h-9 w-full rounded-lg text-xs font-bold border transition flex items-center justify-center ${stateClass}`;
+                btn.innerText = idx + 1;
+                btn.onclick = () => jumpToQuestion(idx);
+                grid.appendChild(btn);
+            });
+        }
+
+        function confirmSubmitExam() {
+            const answeredCount = Object.keys(studentAnswers).length;
+            const total = questions.length;
+            const unAnswered = total - answeredCount;
+
+            let msg = `Anda telah menjawab ${answeredCount} dari ${total} soal.`;
+            if (unAnswered > 0) {
+                msg += `\nMasih ada ${unAnswered} soal yang belum dijawab!`;
+            }
+            msg += "\n\nYakin ingin mengakhiri dan mengirim hasil ujian sekarang?";
+
+            if (confirm(msg)) {
+                submitExam();
+            }
+        }
+
+        function submitExam() {
+            clearInterval(timerInterval);
+
+            // Calculate score
+            let correct = 0;
+            let wrong = 0;
+            let empty = 0;
+
+            questions.forEach(q => {
+                const ans = studentAnswers[q.id];
+                if (ans === undefined) {
+                    empty++;
+                } else if (ans === q.answer) {
+                    correct++;
+                } else {
+                    wrong++;
+                }
+            });
+
+            const finalScore = parseFloat(((correct / questions.length) * 100).toFixed(1));
+            let predicate = "Kurang (D)";
+            if (finalScore >= 90) predicate = "Sangat Baik (A)";
+            else if (finalScore >= 80) predicate = "Baik (B)";
+            else if (finalScore >= 75) predicate = "Cukup (C)";
+
+            // Update Result UI
+            document.getElementById('resStudentName').innerText = currentStudent.name;
+            document.getElementById('resStudentClass').innerText = `Kelas: ${currentStudent.class} | No. Absen: ${currentStudent.absen}`;
+            document.getElementById('resFinalScore').innerText = finalScore;
+            document.getElementById('resPredicate').innerText = `Predikat: ${predicate}`;
+            document.getElementById('resCorrect').innerText = correct;
+            document.getElementById('resWrong').innerText = wrong;
+            document.getElementById('resEmpty').innerText = empty;
+
+            // Save Result to local database
+            const record = {
+                timestamp: new Date().toISOString().replace('T', ' ').substring(0, 16),
+                name: currentStudent.name,
+                class: currentStudent.class,
+                absen: currentStudent.absen,
+                correct: correct,
+                wrong: wrong,
+                score: finalScore,
+                status: finalScore >= 75 ? "Tuntas" : "Belum Tuntas",
+                detailedAnswers: { ...studentAnswers }
+            };
+
+            studentResults.push(record);
+            localStorage.setItem('asas_results', JSON.stringify(studentResults));
+
+            switchTab('result');
+        }
+
+        function resetAppToHome() {
+            switchTab('welcome');
+        }
+
+        /* -------------------------------------------------------------------------- */
+        /*                           TEACHER PORTAL (ADMIN)                           */
+        /* -------------------------------------------------------------------------- */
+        function loginAdmin() {
+            const pass = document.getElementById('adminPassInput').value;
+            if (pass === 'guru46') {
+                isAdminLoggedIn = true;
+                document.getElementById('adminAuthLock').classList.add('hidden');
+                document.getElementById('adminContent').classList.remove('hidden');
+                document.getElementById('adminPassErr').classList.add('hidden');
+                initTeacherDashboard();
+            } else {
+                document.getElementById('adminPassErr').classList.remove('hidden');
+            }
+        }
+
+        function logoutAdmin() {
+            isAdminLoggedIn = false;
+            switchTab('welcome');
+        }
+
+        function initTeacherDashboard() {
+            calculateKPIs();
+            renderAdminTable();
+            renderCharts();
+            renderQuestionBankManager();
+        }
+
+        function calculateKPIs() {
+            const total = studentResults.length;
+            document.getElementById('kpiTotalStudents').innerText = total;
+
+            if (total === 0) {
+                document.getElementById('kpiAvgScore').innerText = "0.0";
+                document.getElementById('kpiMaxScore').innerText = "0";
+                document.getElementById('kpiMinScore').innerText = "0";
+                document.getElementById('kpiPassRate').innerText = "0%";
+                return;
+            }
+
+            const scores = studentResults.map(s => s.score);
+            const sum = scores.reduce((a, b) => a + b, 0);
+            const avg = (sum / total).toFixed(1);
+            const max = Math.max(...scores);
+            const min = Math.min(...scores);
+            const passed = studentResults.filter(s => s.score >= 75).length;
+            const passRate = ((passed / total) * 100).toFixed(0);
+
+            document.getElementById('kpiAvgScore').innerText = avg;
+            document.getElementById('kpiMaxScore').innerText = max;
+            document.getElementById('kpiMinScore').innerText = min;
+            document.getElementById('kpiPassRate').innerText = `${passRate}%`;
+        }
+
+        function switchAdminTab(tab) {
+            document.getElementById('adminTabRekap').classList.add('hidden');
+            document.getElementById('adminTabBankSoal').classList.add('hidden');
+            document.getElementById('tabBtnRekap').className = "py-3 px-4 font-bold text-xs text-slate-500 hover:text-navy-900 flex items-center space-x-2";
+            document.getElementById('tabBtnBankSoal').className = "py-3 px-4 font-bold text-xs text-slate-500 hover:text-navy-900 flex items-center space-x-2";
+
+            if (tab === 'rekap') {
+                document.getElementById('adminTabRekap').classList.remove('hidden');
+                document.getElementById('tabBtnRekap').className = "py-3 px-4 font-bold text-xs text-navy-900 border-b-2 border-navy-900 flex items-center space-x-2";
+            } else {
+                document.getElementById('adminTabBankSoal').classList.remove('hidden');
+                document.getElementById('tabBtnBankSoal').className = "py-3 px-4 font-bold text-xs text-navy-900 border-b-2 border-navy-900 flex items-center space-x-2";
+            }
+        }
+
+        function renderAdminTable() {
+            const tbody = document.getElementById('studentTableBody');
+            const search = document.getElementById('searchStudent').value.toLowerCase();
+            const clsFilter = document.getElementById('filterClass').value;
+
+            tbody.innerHTML = '';
+
+            const filtered = studentResults.filter(s => {
+                const matchName = s.name.toLowerCase().includes(search);
+                const matchClass = clsFilter === 'ALL' || s.class === clsFilter;
+                return matchName && matchClass;
+            });
+
+            if (filtered.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="9" class="p-4 text-center text-slate-400">Belum ada data peserta yang tersimpan.</td></tr>`;
+                return;
+            }
+
+            filtered.forEach((s, idx) => {
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-slate-50 border-b border-slate-200";
+                tr.innerHTML = `
+                    <td class="p-3 text-slate-500">${s.timestamp}</td>
+                    <td class="p-3 font-bold text-navy-900">${s.name}</td>
+                    <td class="p-3">${s.class}</td>
+                    <td class="p-3 text-center">${s.absen}</td>
+                    <td class="p-3 text-center text-emerald-600 font-bold">${s.correct}</td>
+                    <td class="p-3 text-center text-rose-600 font-bold">${s.wrong}</td>
+                    <td class="p-3 text-center font-black text-navy-950 text-sm">${s.score}</td>
+                    <td class="p-3 text-center">
+                        <span class="px-2 py-0.5 rounded-full text-[10px] font-bold ${
+                            s.score >= 75 ? 'bg-emerald-100 text-emerald-700' : 'bg-rose-100 text-rose-700'
+                        }">${s.status}</span>
+                    </td>
+                    <td class="p-3 text-center">
+                        <button onclick="viewStudentDetail(${idx})" class="text-navy-900 hover:text-gold-600 text-xs font-bold underline">
+                            Detail Jawaban
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function viewStudentDetail(idx) {
+            const s = studentResults[idx];
+            document.getElementById('modalDetailTitle').innerText = `Detail Lembar Jawaban: ${s.name} (${s.class})`;
+
+            let html = `
+                <div class="bg-slate-50 p-3 rounded-lg mb-3 flex justify-between font-semibold text-slate-700">
+                    <span>Nilai: ${s.score}</span>
+                    <span>Benar: ${s.correct} | Salah: ${s.wrong}</span>
+                </div>
+                <div class="space-y-3">
+            `;
+
+            questions.forEach((q, qIdx) => {
+                const userAns = s.detailedAnswers ? s.detailedAnswers[q.id] : undefined;
+                const isCorrect = userAns === q.answer;
+                const userAnsText = userAns !== undefined ? q.options[userAns] : "<i>Tidak dijawab</i>";
+                const correctAnsText = q.options[q.answer];
+
+                html += `
+                    <div class="p-3 rounded-lg border ${isCorrect ? 'bg-emerald-50/50 border-emerald-200' : 'bg-rose-50/50 border-rose-200'}">
+                        <p class="font-bold text-slate-800 mb-1">${qIdx + 1}. ${q.question}</p>
+                        <p class="text-[11px] text-slate-600">Jawaban Siswa: <b class="${isCorrect ? 'text-emerald-700' : 'text-rose-700'}">${userAnsText}</b></p>
+                        ${!isCorrect ? `<p class="text-[11px] text-slate-600">Kunci Jawaban: <b class="text-emerald-700">${correctAnsText}</b></p>` : ''}
+                        <p class="text-[10px] text-slate-500 italic mt-1">Pembahasan: ${q.explanation}</p>
+                    </div>
+                `;
+            });
+
+            html += `</div>`;
+            document.getElementById('modalDetailBody').innerHTML = html;
+            document.getElementById('modalDetail').classList.remove('hidden');
+        }
+
+        function closeModalDetail() {
+            document.getElementById('modalDetail').classList.add('hidden');
+        }
+
+        function renderCharts() {
+            if (scoreChartInstance) scoreChartInstance.destroy();
+            if (chapterChartInstance) chapterChartInstance.destroy();
+
+            // Score Range Distribution
+            const ranges = ['0-50', '51-74', '75-89', '90-100'];
+            const counts = [0, 0, 0, 0];
+            studentResults.forEach(s => {
+                if (s.score <= 50) counts[0]++;
+                else if (s.score <= 74) counts[1]++;
+                else if (s.score <= 89) counts[2]++;
+                else counts[3]++;
+            });
+
+            const ctx1 = document.getElementById('scoreDistChart').getContext('2d');
+            scoreChartInstance = new Chart(ctx1, {
+                type: 'bar',
+                data: {
+                    labels: ranges,
+                    datasets: [{
+                        label: 'Jumlah Peserta',
+                        data: counts,
+                        backgroundColor: ['#f43f5e', '#fbbf24', '#3b82f6', '#10b981'],
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: { y: { beginAtZero: true, ticks: { stepSize: 1 } } }
+                }
+            });
+
+            // Chapter Mastery Chart (Sample Ratio)
+            const ctx2 = document.getElementById('chapterMasteryChart').getContext('2d');
+            chapterChartInstance = new Chart(ctx2, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Bab 1: Pengantar Ekonomi', 'Bab 2: Kegiatan Ekonomi'],
+                    datasets: [{
+                        data: [82, 75],
+                        backgroundColor: ['#0f172a', '#f59e0b']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { position: 'bottom' } }
+                }
+            });
+        }
+
+        function renderQuestionBankManager() {
+            const container = document.getElementById('questionManagerList');
+            container.innerHTML = '';
+
+            questions.forEach((q, idx) => {
+                const card = document.createElement('div');
+                card.className = "bg-slate-50 p-4 rounded-xl border border-slate-200 text-xs space-y-2";
+                card.innerHTML = `
+                    <div class="flex justify-between items-center border-b border-slate-200 pb-2">
+                        <span class="font-bold text-navy-950">Soal No. ${idx + 1} (${q.chapter})</span>
+                        <span class="bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded font-bold">Kunci: ${String.fromCharCode(65 + q.answer)}</span>
+                    </div>
+                    <p class="text-slate-600 italic">Stimulus: ${q.stimulus}</p>
+                    <p class="font-semibold text-slate-800">${q.question}</p>
+                    <div class="bg-amber-50/60 p-2.5 rounded border border-amber-200/60 text-amber-900 mt-2">
+                        <b>Kunci & Pembahasan Guru:</b> ${q.explanation}
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function exportToCSV() {
+            if (studentResults.length === 0) {
+                alert("Tidak ada data rekapitulasi untuk diunduh.");
+                return;
+            }
+
+            let csv = "Waktu,Nama Peserta,Kelas,No Absen,Jawaban Benar,Jawaban Salah,Nilai Akhir,Status Ketuntasan\n";
+            studentResults.forEach(r => {
+                csv += `"${r.timestamp}","${r.name}","${r.class}","${r.absen}",${r.correct},${r.wrong},${r.score},"${r.status}"\n`;
+            });
+
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement("a");
+            const url = URL.createObjectURL(blob);
+            link.setAttribute("href", url);
+            link.setAttribute("download", `Rekap_Nilai_ASAS_Ekonomi_SMA46_${new Date().toISOString().substring(0, 10)}.csv`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        function clearAllData() {
+            if (confirm("Apakah Anda yakin ingin menghapus seluruh data hasil ujian peserta? (Tindakan tidak dapat dibatalkan)")) {
+                studentResults = [];
+                localStorage.removeItem('asas_results');
+                calculateKPIs();
+                renderAdminTable();
+                renderCharts();
+            }
+        }
+
+        /* -------------------------------------------------------------------------- */
+        /*                              INITIALIZATION                                */
+        /* -------------------------------------------------------------------------- */
+        window.onload = function() {
+            switchTab('welcome');
+        };
+    </script>
+</body>
+</html>
